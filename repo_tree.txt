@@ -1,0 +1,107 @@
+--- Repository Tree ---
+computer-vision-with-YOLO/
+
+├── .gitignore
+├── .python-version
+├── docs
+│   ├── error_analysis.md
+│   ├── governance_checklist.md
+│   └── mini_report.md
+├── LICENSE
+├── main.py
+├── notebooks
+│   ├── .ipynb_checkpoints
+│   │   └── train_and_evaluate-checkpoint.ipynb
+│   ├── annotation_samples.png
+│   ├── MAICEB1125_M4U3_train_and_evaluate.ipynb
+│   ├── new_predictions_grid.png
+│   ├── repo_results
+│   │   ├── best.pt
+│   │   ├── curves
+│   │   │   ├── confusion_matrix.png
+│   │   │   ├── confusion_matrix_normalized.png
+│   │   │   ├── F1_curve.png
+│   │   │   ├── P_curve.png
+│   │   │   ├── PR_curve.png
+│   │   │   ├── R_curve.png
+│   │   │   └── results.png
+│   │   └── evidence
+│   │       ├── annotation_samples.png
+│   │       ├── new_predictions_grid.png
+│   │       └── val_predictions_grid.png
+│   ├── runs
+│   │   ├── new_predictions
+│   │   │   ├── construction-2-_mp4-162_jpg.rf.efad5f15524c736fe03b9c9936adc481.jpg
+│   │   │   ├── image_55_jpg.rf.27ae4341a9b9647d73a8929ff7a22369.jpg
+│   │   │   ├── IMG_5846_jpg.rf.0b9984069116e2acd928568eb7a8e214.jpg
+│   │   │   ├── youtube-186_jpg.rf.1f1d93447d4be3233c22c4ce9f6e0601.jpg
+│   │   │   └── youtube-496_jpg.rf.def4e9964e9a354d0a02f4ac14334a73.jpg
+│   │   ├── ppe_detection
+│   │   │   ├── args.yaml
+│   │   │   ├── confusion_matrix.png
+│   │   │   ├── confusion_matrix_normalized.png
+│   │   │   ├── F1_curve.png
+│   │   │   ├── labels.jpg
+│   │   │   ├── labels_correlogram.jpg
+│   │   │   ├── P_curve.png
+│   │   │   ├── PR_curve.png
+│   │   │   ├── R_curve.png
+│   │   │   ├── results.csv
+│   │   │   ├── results.png
+│   │   │   ├── train_batch0.jpg
+│   │   │   ├── train_batch1.jpg
+│   │   │   ├── train_batch2.jpg
+│   │   │   ├── train_batch3260.jpg
+│   │   │   ├── train_batch3261.jpg
+│   │   │   ├── train_batch3262.jpg
+│   │   │   ├── val_batch0_labels.jpg
+│   │   │   ├── val_batch0_pred.jpg
+│   │   │   ├── val_batch1_labels.jpg
+│   │   │   ├── val_batch1_pred.jpg
+│   │   │   ├── val_batch2_labels.jpg
+│   │   │   ├── val_batch2_pred.jpg
+│   │   │   └── weights
+│   │   │       ├── best.pt
+│   │   │       └── last.pt
+│   │   └── val_predictions
+│   │       ├── -3154-_png_jpg.rf.f118da2b1c20afb78ff93dc7d558f42c.jpg
+│   │       ├── construction-1023-_jpg.rf.7b73352606fb1d79619d34031c07a232.jpg
+│   │       ├── img_08_jpg.rf.0f132a9c7ca6d12a8a9d1c4b3dbd54da.jpg
+│   │       ├── IMG_3094_mp4-3_jpg.rf.65429c37fcf92b2ba8cfc9d2180051ef.jpg
+│   │       ├── IMG_3100_mp4-3_jpg.rf.f05ef399880b1ac30e900df4f2fbb3c0.jpg
+│   │       ├── Mask2_mov-11_jpg.rf.34ddcb1a619624541a2cca4400b7cd92.jpg
+│   │       ├── Movie-on-10-31-22-at-10_08-AM_mov-13_jpg.rf.91dc3b79da617fb2e4321f27f48f21f4.jpg
+│   │       ├── youtube-446_jpg.rf.b9d9b80538b79252761946ece0bc6317.jpg
+│   │       ├── youtube-697_jpg.rf.950b34f23e196850ec51a4add2eeb840.jpg
+│   │       └── YouTube_FreeStockFootage_People-wearing-face-mask_Empty-Street_Covid19-D_DbgrvhlGs-720p_mp4-66_jpg.rf.72af13fb1f20520e0d41547037ced88b.jpg
+│   ├── val_predictions_grid.png
+│   ├── yolo11n.pt
+│   └── yolov8n.pt
+├── pyproject.toml
+├── README.md
+├── repo_tree.txt
+├── results
+│   ├── curves
+│   │   └── README.md
+│   ├── evidence
+│   │   └── README.md
+│   └── metrics
+├── runs
+│   └── detect
+│       └── val
+│           ├── confusion_matrix.png
+│           ├── confusion_matrix_normalized.png
+│           ├── F1_curve.png
+│           ├── P_curve.png
+│           ├── PR_curve.png
+│           ├── R_curve.png
+│           ├── val_batch0_labels.jpg
+│           ├── val_batch0_pred.jpg
+│           ├── val_batch1_labels.jpg
+│           ├── val_batch1_pred.jpg
+│           ├── val_batch2_labels.jpg
+│           └── val_batch2_pred.jpg
+├── tree.py
+├── tree.txt
+└── uv.lock
+-----------------------
