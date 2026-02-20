@@ -66,6 +66,4 @@ After 30 epochs on 2,605 images, the model achieved:
     from scratch, change `LOAD_PRETRAINED = False` in the configuration cell before running.
 
 
-https://github.com/CarloCogni/computer-vision-with-YOLO/releases/download/untagged-d461a1c1d959f9ef1b7f/best.pt
 
-https://github.com/CarloCogni/computer-vision-with-YOLO/releases/download/V1.0/best.pt
