@@ -52,10 +52,11 @@ After 30 epochs on 2,605 images, the model achieved:
 * [Error Analysis](./docs/error_analysis.md)
 * [Governance Checklist](./docs/governance_checklist.md)
 * [SAM Exploration Notes](./docs/sam_exploration.md)
-
+* **Trained Weights:** [GitHub Release (v1.0 / untagged)](https://github.com/CarloCogni/computer-vision-with-YOLO/releases/download/V1.0/best.pt)
+* 
 ## How to Reproduce (Colab)
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/CarloCogni/computer-vision-with-YOLO/blob/main/YOUR_NOTEBOOK_NAME.ipynb)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/CarloCogni/computer-vision-with-YOLO/blob/main/MAICEN1125_M4U3_train_and_evaluate.ipynb)
 
 1. Click the **Open In Colab** badge above to load the training/inference notebook directly in your browser.
 2. Ensure your runtime is set to GPU (**Runtime** > **Change runtime type** > **T4 GPU** or higher).
@@ -65,3 +66,8 @@ After 30 epochs on 2,605 images, the model achieved:
 5. **Note on Weights:** By default, the notebook will automatically download our pre-trained weights (`best.pt`) from 
     the latest GitHub Release and use them for inference to save time. If you wish to run the full 30-epoch training 
     from scratch, change `LOAD_PRETRAINED = False` in the configuration cell before running.
+
+
+https://github.com/CarloCogni/computer-vision-with-YOLO/releases/download/untagged-d461a1c1d959f9ef1b7f/best.pt
+
+https://github.com/CarloCogni/computer-vision-with-YOLO/releases/download/V1.0/best.pt
