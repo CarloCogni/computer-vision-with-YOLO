@@ -55,9 +55,7 @@ After 30 epochs on 2,605 images, the model achieved:
 * **Trained Weights:** [GitHub Release (v1.0 / untagged)](https://github.com/CarloCogni/computer-vision-with-YOLO/releases/download/V1.0/best.pt)
 * 
 ## How to Reproduce (Colab)
-
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/CarloCogni/computer-vision-with-YOLO/blob/main/MAICEN1125_M4U3_train_and_evaluate.ipynb)
-
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/CarloCogni/computer-vision-with-YOLO/blob/main/notebooks/MAICEN1125_M4U3_train_and_evaluate.ipynb)
 1. Click the **Open In Colab** badge above to load the training/inference notebook directly in your browser.
 2. Ensure your runtime is set to GPU (**Runtime** > **Change runtime type** > **T4 GPU** or higher).
 3. Click **Runtime** > **Restart and run all**.
