@@ -31,13 +31,6 @@ The model is trained to detect 10 distinct classes:
 * **Hardware Used:** NVIDIA RTX 4070 GPU
 * **Expected Runtime:** ~[Insert minutes] minutes for full training; ~1.9 ms per image for inference.
 
-## How to Reproduce (Colab)
-1. Open the [Baseline/Training Notebook](link-to-your-notebook.ipynb) directly in Google Colab.
-2. Ensure your runtime is set to GPU (Runtime > Change runtime type > T4 GPU or higher).
-3. Click **Restart runtime** and then **Run all**.
-4. The notebook is configured to automatically download the dataset via KaggleHub and install necessary dependencies.
-5. **Note on Weights:** The trained weights from our 30-epoch run are saved in the repository at `./results/best.pt`. If you wish to skip training and only run inference, you can load these weights directly in the evaluation cell.
-
 ## Results Summary
 After 30 epochs on 2,605 images, the model achieved:
 * **mAP@50:** 0.754
