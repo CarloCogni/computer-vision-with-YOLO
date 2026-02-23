@@ -1,44 +1,46 @@
-# Error Analysis
+# Error Analysis & Failure Taxonomy
 
-## False Positives (Model detected something that is not there)
+## False Positives (Type I Error)
+*Model detected PPE where none physically exists.*
 
-### FP-1: Safety Cone confused with NO-Safety Vest
-**What:** The model occasionally labels orange/red objects (buckets, barriers) as "Safety Cone" even when they are not cones.
-**Why:** Safety cones share a similar color profile (bright orange) with many other construction site objects. The model relies heavily on color cues rather than shape, leading to false triggers on similarly colored objects.
+### FP-1: Semantic Confusion (Equipment as PPE)
+* **What:** The model occasionally labels yellow excavator buckets, safety cones, or orange barriers as "Hardhat" or "Vest."
+* **Why:** **Color-Overweighting.** The model is prioritizing high-visibility color features over specific hemispherical or torso-aligned geometry. In AECO environments, this results in "phantom" workers being detected on stationary equipment.
 
-### FP-2: Hardhat detected on construction equipment
-**What:** The model sometimes detects "Hardhat" on rounded features of machinery (e.g., headlights, tank caps).
-**Why:** The model has learned that small, rounded, brightly colored objects near the top of frames are likely hard hats. Machinery components with similar visual signatures (circular, colored) trigger false detections.
+### FP-2: Background Noise (Luminance & Reflections)
+* **What:** High-reflectivity surfaces (glass cladding or metallic scaffolding) are sometimes detected as "Vest."
+* **Why:** **Specular Reflection Interference.** High-luminance reflections mimic the visual signature of retroreflective safety strips. The model lacks a "Context Filter" to distinguish between a biological worker and a reflective architectural surface.
 
-### FP-3: Person detected in reflections or posters
-**What:** Reflections in glass surfaces or safety posters showing workers are occasionally detected as "Person" with PPE annotations.
-**Why:** The model cannot distinguish between real workers and their reflections or printed images. The visual features (human silhouette, clothing) are the same in both cases.
+### FP-3: Spatial Logic Failure (Geometry Misidentification)
+* **What:** Rounded objects carried by workers (like circular buckets or lids) are detected as "Hardhats."
+* **Why:** **Geometric Bias.** The model has learned to trigger a "Hardhat" detection for any hemispherical shape at the top of a detected cluster. Without a human skeleton constraint, it cannot differentiate between a helmet on a head and an object held in hands.
 
 ---
 
-## False Negatives (Model missed something that is there)
+## False Negatives (Type II Error)
+*Model missed PPE that was physically present.*
 
-### FN-1: Small/distant workers missed entirely
-**What:** Workers far from the camera (occupying <30px in the image) are frequently missed — no detection at all.
-**Why:** At 640px input resolution, very small objects lose critical features. YOLOv8n's nano architecture has limited feature extraction capacity for tiny objects. The dataset also has fewer examples of very distant workers.
+### FN-1: Small Object Detection Gap (Gloves)
+* **What:** Workers wearing gloves at distances >10m are frequently missed by the model.
+* **Why:** **Feature Resolution Limit.** In a 640x640 frame, gloves occupy a negligible pixel area. During the neural network's downsampling (convolution), these fine-grained features are "averaged out" and lost before reaching the prediction head.
 
-### FN-2: NO-Hardhat missed in crowded scenes
-**What:** In images with 5+ workers, some workers without hard hats are not flagged as "NO-Hardhat."
-**Why:** Dense scenes cause NMS (Non-Maximum Suppression) to filter overlapping boxes. When workers are close together, the model suppresses weaker detections, sometimes removing correct NO-Hardhat predictions.
+### FN-2: Partial Occlusion (Construction Clutter)
+* **What:** Workers standing behind pallets, machinery, or rebar are not flagged for wearing a "Vest."
+* **Why:** **Feature Fragmentation.** The model expects a complete "shoulder-to-waist" silhouette. When >40% of the PPE is occluded by site clutter, the mathematical confidence score drops below the detection threshold.
 
-### FN-3: Workers partially occluded by machinery
-**What:** Workers partially hidden behind machinery or scaffolding are not detected.
-**Why:** Heavy occlusion (>50% of the body hidden) removes the visual cues the model relies on. The training set has limited examples of heavily occluded workers, so the model hasn't learned to handle these cases well.
+### FN-3: Luminance Sensitivity (Shadows & Low Light)
+* **What:** Workers in shaded trenches, indoor concrete shells, or night shifts show very low recall.
+* **Why:** **Contrast Deficiency.** Dark PPE (black gloves or dust-covered vests) blends into the shadows. The model cannot define the bounding box boundaries because the pixel intensity of the object is too similar to the background noise.
 
 ---
 
 ## Prioritized Next Data Improvements
 
-### 1. Add more small-object training data
-**Action:** Collect or augment images with distant workers (>15m from camera). Apply mosaic augmentation or random crop-and-resize to create more small-object training examples. This directly addresses FN-1.
+### 1. Implement Tiling Preprocessing
+**Action:** Use a "Slicing" export in Roboflow to divide 4K site images into smaller 640x640 tiles. This effectively increases the resolution of small objects (Gloves) relative to the frame, directly addressing **FN-1**.
 
-### 2. Increase crowded-scene representation
-**Action:** Source images with 5+ workers in frame, especially with mixed PPE compliance. Ensure annotations are tight and non-overlapping. Consider tuning NMS IoU threshold (lower to 0.4) to retain more detections. This addresses FN-2.
+### 2. Hard Negative Mining (Zero-Label Injection)
+**Action:** Add 100+ images containing site clutter (buckets, netting, cones) with **zero annotations**. This teaches the model that these specific high-visibility objects are "Background" and not PPE, reducing **FP-1** and **FP-3**.
 
-### 3. Add hard negative mining for color-similar objects
-**Action:** Explicitly add images of orange/red non-cone objects (buckets, barriers, signs) with no "Safety Cone" label, and images of round machinery components with no "Hardhat" label. This forces the model to learn shape discrimination and addresses FP-1 and FP-2.
+### 3. Contrast-Robust Augmentations
+**Action:** Retrain the model using a heavy "Mosaic" augmentation combined with "Random Brightness/Exposure" filters. This simulates the harsh lighting transitions found on construction sites, improving robustness for **FN-3**.****
