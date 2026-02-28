@@ -52,14 +52,14 @@ While Version 1 established a baseline, a "quality gap" was identified in critic
 ### V2 Training & Performance
 * **Hardware:** Trained on **NVIDIA Tesla T4 GPU** (11-minute run time).
 * **Inference Speed:** **3.0ms per image** (~333 FPS), ideal for real-time CCTV integration.
-* **mAP@50 (Global):** 0.682 (Audited metric provides higher real-world reliability than baseline).
+* **mAP@50 (Global):** 0.369 (Audited metric provides higher real-world reliability than noisy baseline).
 
-### Key Results (V2 vs Baseline)
-* **Safety Vest Success:** Achieved a peak **0.905 mAP@50**, a significant reliability boost for torso-level PPE.
-* **Vehicle Detection:** Reached **0.995 mAP@50** with **1.00 recall**, ensuring zero missed heavy machinery detections.
-* **Hardhat Reliability:** Improved to **0.730 mAP@50**, effectively addressing the challenges of small-object detection at distance.
+### Key Results (V2 Audited)
+* **Safety Vest Success:** Achieved **0.535 mAP@50** with **0.79 recall**, a significant reliability boost for torso-level PPE.
+* **Vehicle Detection:** Reached **0.663 mAP@50** with **1.00 recall**, ensuring zero missed heavy machinery detections.
+* **Hardhat Reliability:** Improved to **0.677 mAP@50**, effectively addressing the challenges of small-object detection at distance.
 
-> **Note on Weights:** The V2 weights (`best_audited_v2.pt`) are now the recommended deployment version for AECO safety protocols.
+> **Note on Weights:** The V2 weights (`best_v2.pt`) are now the recommended deployment version for AECO safety protocols.
 
 
 ## Deliverables & Documentation
@@ -67,10 +67,20 @@ While Version 1 established a baseline, a "quality gap" was identified in critic
 * [Error Analysis](./docs/error_analysis.md)
 * [Governance Checklist](./docs/governance_checklist.md)
 * [SAM Exploration Notes](./docs/sam_exploration.md)
-* **Trained Weights:** [GitHub Release (v1.0 / untagged)](https://github.com/CarloCogni/computer-vision-with-YOLO/releases/download/V1.0/best.pt)
-* 
+* **Trained Weights_v1:** [GitHub Release (v1.0 / untagged)](https://github.com/CarloCogni/computer-vision-with-YOLO/releases/download/V1.0/best.pt)
+* **Trained Weights_v2:** [V2.0 Audited Weights](https://github.com/CarloCogni/computer-vision-with-YOLO/blob/main/results/best_v2.pt)
 
 ## How to Reproduce (Colab)
+### Version 2: Audited Model
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/CarloCogni/computer-vision-with-YOLO/blob/main/notebooks/MAICEN1125_M4U3_computer_vision_version2_audited.ipynb)
+
+1. Click the **Open In Colab** badge above to load the audited inference notebook.
+2. Ensure your runtime is set to GPU (**Runtime** > **Change runtime type** > **T4 GPU**).
+3. Click **Runtime** > **Restart and run all**.
+4. The notebook is fully automated: it downloads the **612-image Audited V2 dataset** and installs all dependencies.
+5. **Note on Weights:** The notebook defaults to downloading **best_v2.pt** from the repository for instant inference. To run the full training, set `RUN_TRAINING = True` in the configuration cell.
+
+### Version 1: Baseline Model
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/CarloCogni/computer-vision-with-YOLO/blob/main/notebooks/MAICEN1125_M4U3_train_and_evaluate.ipynb)
 1. Click the **Open In Colab** badge above to load the training/inference notebook directly in your browser.
 2. Ensure your runtime is set to GPU (**Runtime** > **Change runtime type** > **T4 GPU** or higher).
