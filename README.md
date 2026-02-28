@@ -21,18 +21,16 @@ The model is trained to detect 10 distinct classes:
 * **Dataset:** 2,605 images (Auto-generated/KaggleHub).
 * **Source:** Construction Site Safety Image Dataset (via Kaggle/Roboflow)
 * **Split:** 80% Training / 20% Validation
-* **Link:** [Insert your dataset link here]
 
 ### Reproducibility Checklist
-* **Dataset Version:** [Insert Version/Date]
+* **Dataset Version:** V2
 * **Model Variant:** YOLOv8n (Nano)
-* **Hyperparameters:** 30 Epochs | Batch Size: [Insert Size, e.g., 16] | Image Size: 640x640
-* **Environment:** `ultralytics==[Insert version number]`
+* **Hyperparameters:** 30 Epochs |  Image Size: 640x640
+* **Environment:** `ultralytics
 
 ### Reproducibility Proof
-* **Last Successful Run:** February 20, 2026
+* **Last Successful Run:** February 28, 2026
 * **Hardware Used:** NVIDIA RTX 4070 GPU
-* **Expected Runtime:** ~[Insert minutes] minutes for full training; ~1.9 ms per image for inference.
 
 ### Results Summary
 After 30 epochs on 2,605 images, the model achieved:
@@ -96,4 +94,6 @@ While Version 1 established a baseline, a "quality gap" was identified in critic
     from scratch, change `LOAD_PRETRAINED = False` in the configuration cell before running.
 
 
-
+### B: Short PDF pack
+* [Slides (PDF)](./docs/slides_m4u3.pdf)
+* [Mini Report (PDF)](./docs/mini_report_m4u3.pdf)
