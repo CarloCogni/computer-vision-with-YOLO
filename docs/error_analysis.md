@@ -5,8 +5,8 @@
 
 ### FP-1: Semantic Confusion (Equipment as PPE)
 * **What:** The model occasionally labels yellow excavator buckets, safety cones, or orange barriers as "Hardhat" or "Vest."
-* **Why:** **Color-Overweighting.** The model is prioritizing high-visibility color features over specific hemispherical or torso-aligned geometry. In AECO environments, this results in "phantom" workers being detected on stationary equipment.
-* In Version 2, the 1.00 Vehicle Recall indicates that the model no longer confuses site machinery with background clutter, though 'Machinery' still shows a 0.23 background leakage rate
+* **Why:** **Color-Overweighting.** The model prioritizes color features over specific hemispherical or torso-aligned geometry.
+* **V2 Status:** While 'vehicle' achieved a **1.00 recall**, the 'machinery' class still shows a **0.23 background leakage** rate, where stationary equipment is incorrectly detected as a foreground object.
 
 ### FP-2: Background Noise (Luminance & Reflections)
 * **What:** High-reflectivity surfaces (glass cladding or metallic scaffolding) are sometimes detected as "Vest."
@@ -16,7 +16,7 @@
 * **What:** Rounded objects carried by workers (like circular buckets or lids) are detected as "Hardhats."
 * **Why:** **Geometric Bias.** The model has learned to trigger a "Hardhat" detection for any hemispherical shape at the top of a detected cluster. Without a human skeleton constraint, it cannot differentiate between a helmet on a head and an object held in hands.
 
-###FP-4: Person-to-Background Leakage
+### FP-4: Person-to-Background Leakage
 * **What:** The model labels background site elements as "Person" 26% of the time.
 * **Why:** Silhouette Ambiguity. In complex AECO environments, vertical structures like poles, narrow scaffolding sections, or hanging cables mimic the thin, vertical aspect ratio of a human standing at a distance.
 ---
@@ -36,7 +36,7 @@
 * **What:** Workers in shaded trenches, indoor concrete shells, or night shifts show very low recall.
 * **Why:** **Contrast Deficiency.** Dark PPE (black gloves or dust-covered vests) blends into the shadows. The model cannot define the bounding box boundaries because the pixel intensity of the object is too similar to the background noise.
 
-### FN-1: Small Object Detection (Hardhats vs. Masks)
+### FN-4: Cross-Class Confusion (Hardhats vs. Masks)
 V2 data shows a specific cross-class error that is very common in PPE detection.
 
 * **What:** 9% of actual Hardhats are being predicted as "Masks".
