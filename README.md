@@ -15,23 +15,26 @@ The model is trained to detect 10 distinct classes:
 * **machinery:** Heavy construction equipment (e.g., excavators, loaders).
 * **vehicle:** Standard site vehicles (e.g., pickup trucks, vans).
 
-## Dataset
+---
+## Model Evolution: Baseline Version 1
+### Assessment & Reproducibility
+* **Dataset:** 2,605 images (Auto-generated/KaggleHub).
 * **Source:** Construction Site Safety Image Dataset (via Kaggle/Roboflow)
 * **Split:** 80% Training / 20% Validation
 * **Link:** [Insert your dataset link here]
 
-## Reproducibility Checklist
+### Reproducibility Checklist
 * **Dataset Version:** [Insert Version/Date]
 * **Model Variant:** YOLOv8n (Nano)
 * **Hyperparameters:** 30 Epochs | Batch Size: [Insert Size, e.g., 16] | Image Size: 640x640
 * **Environment:** `ultralytics==[Insert version number]`
 
-## Reproducibility Proof
+### Reproducibility Proof
 * **Last Successful Run:** February 20, 2026
 * **Hardware Used:** NVIDIA RTX 4070 GPU
 * **Expected Runtime:** ~[Insert minutes] minutes for full training; ~1.9 ms per image for inference.
 
-## Results Summary
+### Results Summary
 After 30 epochs on 2,605 images, the model achieved:
 * **mAP@50:** 0.754
 * **Precision:** 0.876
@@ -48,8 +51,9 @@ While Version 1 established a baseline, a "quality gap" was identified in critic
 * **Targeted Audit:** Performed a 100% manual review of 204 high-priority images to correct bounding box inaccuracies in "Hardhat" and "Safety Vest" classes.
 * **Augmentation:** Applied a 3x multiplier to the audited seed, resulting in a **612-image training set** optimized for site-specific conditions.
 * **Balanced Split:** Maintained a strict validation set to ensure zero data leakage and high generalization.
+* * **Dataset Link:** [Roboflow V2 Audited](https://universe.roboflow.com/maria-maicen/computer-vision-with-yolo_auto/browse?queryText=&pageSize=50&startingIndex=0&browseQuery=true).
 
-### V2 Training & Performance
+### Training & Performance (V2 Audited)
 * **Hardware:** Trained on **NVIDIA Tesla T4 GPU** (11-minute run time).
 * **Inference Speed:** **3.0ms per image** (~333 FPS), ideal for real-time CCTV integration.
 * **mAP@50 (Global):** 0.369 (Audited metric provides higher real-world reliability than noisy baseline).
