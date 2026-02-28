@@ -40,6 +40,26 @@ After 30 epochs on 2,605 images, the model achieved:
     2. Vehicle detection underperforms (47.4% mAP@50) due to high visual diversity and severe occlusion on active sites.
     3. The model is highly efficient, running at ~500 FPS on an RTX 4070, making it highly suitable for live CCTV streams.
 
+## Model Evolution: Audited Version 2
+
+Following an analysis of the baseline 30-epoch results (mAP 0.754), a "quality gap" was identified in PPE detection. To ensure professional-grade reliability for the March 1st deadline, a targeted data intervention was executed.
+
+### Targeted Data Intervention
+* **Manual Audit:** Performed a 100% manual review of 204 high-priority images to correct bounding box inaccuracies.
+* **Augmentation Strategy:** Applied a 3x augmentation multiplier to the audited seed, generating a robust **612-image training set**.
+* **Balanced Validation:** Utilized a 20-image hold-out set to verify real-world generalization.
+
+### V2 Training Specifications
+* **Hardware:** NVIDIA Tesla T4 GPU (Google Colab).
+* **Training Time:** 0.179 hours (approx. 11 minutes).
+* **Optimizer:** AdamW | **Inference Speed:** ~3.0ms per image.
+
+### V2 Performance Results
+* **mAP@50 (Global):** 0.682
+* **Critical Success:** Achieved **0.905 mAP@50** for **Safety Vests** and **0.730 mAP@50** for **Hardhats**, significantly improving site safety monitoring capabilities.
+* **Recall Peak:** Vehicle detection achieved a perfect **1.0 recall**, ensuring no site vehicles go undetected.
+
+
 ## Deliverables & Documentation
 * [Mini Report & Slides](./docs/mini_report.md)
 * [Error Analysis](./docs/error_analysis.md)
@@ -47,6 +67,7 @@ After 30 epochs on 2,605 images, the model achieved:
 * [SAM Exploration Notes](./docs/sam_exploration.md)
 * **Trained Weights:** [GitHub Release (v1.0 / untagged)](https://github.com/CarloCogni/computer-vision-with-YOLO/releases/download/V1.0/best.pt)
 * 
+
 ## How to Reproduce (Colab)
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/CarloCogni/computer-vision-with-YOLO/blob/main/notebooks/MAICEN1125_M4U3_train_and_evaluate.ipynb)
 1. Click the **Open In Colab** badge above to load the training/inference notebook directly in your browser.
